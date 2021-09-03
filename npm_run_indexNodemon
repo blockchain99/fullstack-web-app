@@ -1,0 +1,36 @@
+===============================
+1. cd server
+2. server$ npm init
+entry point : server.js
+----------- server.js ------------------
+const express = require('express'); //common js module for server side
+//but for react es6, import express from 'express';
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send({ hi: 'there' })
+});
+
+app.listen(5000);
+----------end of server.js ----------------
+
+4. server$ npm i -D nodemon //constantly watchout node application. if changes then update
+5. in package.json, add follows for every changes cause updates.
+"scripts": {
+  "start": "node server.js",
+  "server": "nodemon server.js"
+},
+5-1. in package.json, add follows (to prevent error)
+  "proxy": "http://localhost:5000"
+1) then $ npm start // it shows Server running on port 5000
+then change made --> automatically reflect it by nodemon 
+then ctrl + c to stop Server
+2)
+$ npm run server //In this case, nodemon run the server
+//if we change somehting in server.js with atom, 'hi: there' --->
+app.get('/', (req, res) => {
+  res.send({ hello: 'there' })
+});
+//which cause update by itself.
+then reload in browser: localhost:5000 or http://127.0.0.1:5000/
+//shows hello: there changed!
